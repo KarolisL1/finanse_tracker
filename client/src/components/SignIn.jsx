@@ -5,7 +5,7 @@ import LogInForm from './LogInForm';
 const SignIn = () => {
     return (
         <div>
-            <h1>Sign In</h1>
+            <h1>Welcome</h1>
             <div className="row">
                 <div className="col">
                     <RegistrationForm />

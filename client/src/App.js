@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import React, {useState} from "react";
 import SignIn from './components/SignIn';
 import Dashboard from './components/Dashboard';
 import NewItem from './components/NewItem';
@@ -12,7 +13,9 @@ import {
   Route
 } from "react-router-dom";
 
+
 function App() {
+  let [logInUserId, setLogInUserId] = useState('');
   return (
     <BrowserRouter>
       <div className="App">
@@ -21,16 +24,16 @@ function App() {
             <SignIn />
           </Route>
           <Route exact path="/dashboard">
-            <Dashboard />
+            <Dashboard logInUserId = {logInUserId} setLogInUserId = {setLogInUserId}/>
           </Route>
           <Route exact path="/new">
-            <NewItem />
+            <NewItem logInUserId = {logInUserId}/>
           </Route>
           <Route exact path="/expenses/:id/edit">
             <EditItem />
           </Route>
           <Route exact path="/chart">
-            <Main />
+            <Main logInUserId = {logInUserId}/>
           </Route>
         </Switch>
       </div>

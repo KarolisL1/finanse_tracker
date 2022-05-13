@@ -12,6 +12,17 @@ class ExpenseController {
             })
     }
 
+    getExpensesByUserId(req, res) {
+        ExpenseModel.find({user_id: req.params.userid})
+            .populate('user_id')
+            .then(allExpenses => {
+                res.json({results: allExpenses});
+            })
+            .catch(err => {
+                res.json(err);
+            })
+    }
+
     addExpense(req, res) {
         ExpenseModel.create(req.body)
         .then(newItem => {
@@ -52,7 +63,6 @@ class ExpenseController {
             res.json({message: "Something is wrong", error: err});
         });
     }
-
 }
 
 module.exports = new ExpenseController();

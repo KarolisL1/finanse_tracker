@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.post('/api/expenses/new', ExpenseController.addExpense);
     app.put('/api/expenses/edit/:id', ExpenseController.editExpense);
     app.delete('/api/expenses/delete/:id', ExpenseController.deleteExpense);
+    app.get('/api/expenses/user/:userid', ExpenseController.getExpensesByUserId);
 }

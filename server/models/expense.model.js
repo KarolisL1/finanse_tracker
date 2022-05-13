@@ -25,6 +25,10 @@ const ExpenseSchema = new mongoose.Schema({
         required: [true, 'Category is required'],
         minlength: [3, 'Category must be at least 3 characters long']
     },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 },
 {timestamps: true}
 );
