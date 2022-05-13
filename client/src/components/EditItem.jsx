@@ -67,7 +67,7 @@ const EditItem = () => {
             </div>
             <div className="form-group">
                 <label htmlFor="">Date</label>
-                <input type="date" name="date" className="form-control" onChange={(e)=>setDate(e.target.value)} value={date}/>
+                <input type="date" name="date" className="form-control" onChange={(e)=>setDate(e.target.value)} value={date.slice(0,10)}/>
                 <p>{formErrors.date?.message}</p>
             </div>
             <div className="form-group">
