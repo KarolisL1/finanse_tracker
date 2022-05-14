@@ -18,26 +18,12 @@ let [data1, setData1] = useState([]);
 let [data2, setData2] = useState([]);
 let [loaded, setLoaded ] = useState(false);
 
-
 useEffect(() => {
     axios.get(`http://localhost:8000/api/expenses/user/${logInUserId.logInUserId}` , {withCredentials: true})
     .then(res => {
         console.log("Expenses:", res)
         setExpenses(res.data.results)
-    
-        // let foodExpenses = res.data.results.filter(expense=>{
-        //     return expense.category === "Food";
-        // })
-        // let clothesExpenses = res.data.results.filter(expense=>{
-        //     return expense.category === "Clothes";
-        // })
-        // let otherExpenses = res.data.results.filter(expense=>{
-        //     return expense.category === "Other";
-        // })
-        // let gasExpenses = res.data.results.filter(expense=>{
-        //     return expense.category === "Gas";
-        // })
-        
+
         res.data.results.forEach(expense => {
             if (expense.category === "Food"){
                 totalFood+=expense.price;
@@ -52,15 +38,8 @@ useEffect(() => {
                 totalGas+=expense.price;
             }
         })
-        // clothesExpenses.forEach(expense => {
-        //     totalClothes+= expense.price;
-        // })
-        // otherExpenses.forEach(expense => {
-        //     totalOther += expense.price;
-        // })
-        // gasExpenses.forEach(expense => {
-        //     totalGas += expense.price;
-        // })
+
+        console.log("Gas total:", totalGas);
 
         let obj = {
             "01": 0,
@@ -80,6 +59,7 @@ useEffect(() => {
         //by month
         res.data.results.forEach(expense=>{
             let month = expense.date.slice(5,7);
+            console.log("menuo cia: ", month);
             obj[month] += expense.price;
         })
 
@@ -100,7 +80,7 @@ useEffect(() => {
 function displaySomething(){
     if(loaded === true){
         let dataSet = {
-            labels: ["Food", "Clothes", "Gas", "Other"],
+            labels: ["Food", "Clothes", "Other", "Gas"],
             datasets: [
                 {
                 label: "Data1",
